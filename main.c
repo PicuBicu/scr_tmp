@@ -23,10 +23,14 @@ int main()
 {
     srand(time(NULL));
     printf("pid = %d, level change signal = %d, dump signal = %d\n", getpid(), LEVEL_SIGNAL, LOG_SIGNAL);
-    assert(create_logger(ENABLED, LEVEL_SIGNAL, LOG_SIGNAL, FILENAME) == 0);
+    assert(create_logger(ENABLED
+                         , LEVEL_SIGNAL
+                         , LOG_SIGNAL
+                         , DFL_FILENAME
+                         , 2) == 0);
     pthread_t tid, tid2;
-    pthread_create(&tid, NULL, factory, (void *)&level);
-    pthread_create(&tid2, NULL, logThread, (void *)&dump);
+    pthread_create(&tid, NULL, factory, (void *)&logging_state_signal);
+    pthread_create(&tid2, NULL, logThread, (void *)&dump_file_signal);
     pthread_join(tid, NULL);
     pthread_join(tid2, NULL);
     destroy_logger();
@@ -35,31 +39,31 @@ int main()
 
 void *factory(void *arg)
 {
-    registerFunction(f1);
+    add_dump_file_function(f1);
 
     while (1)
     {
         originalNum = rand() % 16;
         factoryNum = countFactory(originalNum);
-        writeToFile(MIN, "Starting looking for a factory number");
+        log_message(MIN, "Starting looking for a factory number");
         char buffer[100];
         sprintf(buffer, "Found a number: %d and the factory: %llu", originalNum, factoryNum);
-        writeToFile(MIN, buffer);
+        log_message(MIN, buffer);
         sleep(1);
     }
     return NULL;
 }
 void *logThread(void *arg)
 {
-    registerFunction(f2);
+    add_dump_file_function(f2);
     while (1)
     {
         char buffer[100];
         sprintf(buffer, "Checking whether number %llu is even or odd", factoryNum);
-        writeToFile(STANDARD, buffer);
+        log_message(STANDARD, buffer);
         evenOdd = factoryNum % 2;
         sprintf(buffer, "Checking whether number %llu is prime or composite", factoryNum);
-        writeToFile(MAX, buffer);
+        log_message(MAX, buffer);
         prime = isPrime(factoryNum);
         sleep(1);
     }

@@ -1,26 +1,36 @@
 #include "init.h"
 
 atomic_int is_log_enabled_flag, dump_log_flag;
-state_t logging_state;
-bool is_initialized = false;
-int level, dump;
+logging_state current_logging_state;
+signum logging_state_signal = 0, dump_file_signal = 0;
 FILE *file;
-int funSize = 0, funCapacity = 5;
-FUN *fun;
+bool is_initialized = false;
+
+unsigned int dump_functions_array_index = 0;
+size_t dump_functions_array_size = 5;
+dump_function_ptr *dump_function_array;
 pthread_t mainTid, logTid;
 pthread_mutex_t logging_to_file_mutex, register_function_mutex;
 
-int create_logger(state_t state, int state_signal, int enabling_logs_signal, char *filename) {
+int create_logger(logging_state state,
+                  signum logging_state_signal_num,
+                  signum dump_file_signal_num,
+                  char *filename,
+                  size_t dump_file_array_init_size) {
+//    Checks if logger has already been initialized
     if (is_initialized) {
         return EXIT_FAILURE;
     }
+
+    current_logging_state = state;
+    dump_functions_array_size = dump_file_array_init_size;
+    logging_state_signal = logging_state_signal_num;
+    dump_file_signal = dump_file_signal_num;
+
     atomic_store(&is_log_enabled_flag, 0);
     atomic_store(&dump_log_flag, 0);
 
-    logging_state = state;
-    level = state_signal;
-    dump = enabling_logs_signal;
-
+//    czy tu nie powinno byc sekcji?
     file = fopen(filename, "a+");
     if (file == NULL) {
         return EXIT_FAILURE;
@@ -29,21 +39,21 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
     sigset_t set;
     struct sigaction action;
     sigfillset(&set);
-    action.sa_sigaction = handle_state_signal; // parametr
+    action.sa_sigaction = handle_logging_state_change_signal;
     action.sa_flags = SA_SIGINFO;
     action.sa_mask = set;
 
-    if (sigaction(state_signal, &action, NULL) != 0) {
+    if (sigaction(logging_state_signal_num, &action, NULL) != 0) {
         fclose(file);
         return EXIT_FAILURE;
     }
 
     sigfillset(&set);
-    action.sa_sigaction = handle_enabling_logs_signal;
-    action.sa_flags = SA_SIGINFO; // todo: moze mozna wywalic i zmienic ilosc parametrów na 1 ?
+    action.sa_sigaction = handle_dump_file_creation_signal;
+    action.sa_flags = SA_SIGINFO;
     action.sa_mask = set;
 
-    if (sigaction(enabling_logs_signal, &action, NULL) != 0) {
+    if (sigaction(dump_file_signal_num, &action, NULL) != 0) {
         fclose(file);
         return EXIT_FAILURE;
     }
@@ -59,25 +69,25 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
         return EXIT_FAILURE;
     }
 
-    fun = (FUN *) calloc(sizeof(FUN), funCapacity);
-    if (fun == NULL) {
+    dump_function_array = (dump_function_ptr *) calloc(sizeof(dump_function_ptr), dump_functions_array_size);
+    if (dump_function_array == NULL) {
         fclose(file);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
     }
 
-    if (pthread_create(&logTid, NULL, executeLogs, NULL) != 0) {
+    if (pthread_create(&logTid, NULL, dump_file_creation_routine, NULL) != 0) {
         fclose(file);
-        free(fun);
+        free(dump_function_array);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
     }
 
-    if (pthread_create(&mainTid, NULL, executeThread, NULL) != 0) {
+    if (pthread_create(&mainTid, NULL, logging_enability_routine, NULL) != 0) {
         fclose(file);
-        free(fun);
+        free(dump_function_array);
         pthread_cancel(logTid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
@@ -86,7 +96,7 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
 
 //    todo moze wywalić?
     if (pthread_detach(mainTid) != 0) {
-        free(fun);
+        free(dump_function_array);
         fclose(file);
         pthread_cancel(mainTid);
         pthread_cancel(logTid);
@@ -97,7 +107,7 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
 
     if (pthread_detach(logTid) != 0) {
         fclose(file);
-        free(fun);
+        free(dump_function_array);
         pthread_cancel(mainTid);
         pthread_cancel(logTid);
         pthread_mutex_destroy(&register_function_mutex);
@@ -109,18 +119,21 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
     return EXIT_SUCCESS;
 }
 
-int registerFunction(FUN f) {
+// TODO: need description
+int add_dump_file_function(dump_function_ptr function) {
     if (is_initialized == true) {
         pthread_mutex_lock(&register_function_mutex);
-        if (funSize >= funCapacity) {
-            FUN *functions = (FUN *) realloc(fun, sizeof(FUN) * funCapacity * 2);
+        if (dump_functions_array_index >= dump_functions_array_size) {
+            dump_function_ptr *functions = (dump_function_ptr *) realloc(
+                    dump_function_array,
+                    sizeof(dump_function_ptr) * dump_functions_array_size * 2);
             if (functions == NULL) {
                 return EXIT_FAILURE;
             }
-            fun = functions;
-            funCapacity = funCapacity * 2;
+            dump_function_array = functions;
+            dump_functions_array_size = dump_functions_array_size * 2;
         }
-        fun[funSize++] = f;
+        dump_function_array[dump_functions_array_index++] = function;
         pthread_mutex_unlock(&register_function_mutex);
         return EXIT_SUCCESS;
     } else {
@@ -128,33 +141,12 @@ int registerFunction(FUN f) {
     }
 }
 
-char *get_current_time() {
-    char timeBuf[30];
-    char *current_name = malloc(sizeof(char) * 50);
-    if (current_name == NULL) {
-        return NULL;
-    }
-    time_t raw_time = time(0);
-    struct tm *local_time = localtime(&raw_time);
-    strftime(timeBuf, 30, DATE_FORMAT, local_time);
-    sprintf(current_name, "%s", timeBuf);
-    return current_name;
-}
-
-FILE *create_file() {
-    char *full_date = get_current_time();
-    if (full_date == NULL) {
-        return NULL;
-    }
-    return fopen(strcat(full_date, ".txt"), "w+");
-}
-
 void destroy_logger() {
     if (file != NULL) {
         fclose(file);
     }
-    if (fun != NULL) {
-        free(fun);
+    if (dump_function_array != NULL) {
+        free(dump_function_array);
     }
     atomic_store(&dump_log_flag, 0);
     atomic_store(&is_log_enabled_flag, 0);
@@ -164,25 +156,27 @@ void destroy_logger() {
     pthread_mutex_destroy(&logging_to_file_mutex);
 }
 
-void handle_state_signal(int signo, siginfo_t *info, void *other) {
+void handle_logging_state_change_signal(int signo, siginfo_t *info, void *other) {
     atomic_store(&is_log_enabled_flag, 1);
 }
 
-void handle_enabling_logs_signal(int signo, siginfo_t *info, void *other) {
+void handle_dump_file_creation_signal(int signo, siginfo_t *info, void *other) {
     atomic_store(&dump_log_flag, 1);
 }
 
-void writeToFile(log_detail d, char *data) {
-    if (is_initialized && logging_state == ENABLED) {
+void log_message(log_priority priority, char *message) {
+    if (is_initialized && current_logging_state == ENABLED) {
+// logowania tylko tych zdazen których stan jest wiekszy badz rowny biezacemu priorytetowi
         pthread_mutex_lock(&logging_to_file_mutex);
-        char* full_date = get_current_time();
-        fprintf(file, "| %s | %s | %s |\n", full_date, convertDetail(d), data);
-        fflush(file);
+            char *full_date = get_current_time(DATE_FORMAT);
+            char *priority_name = get_log_type(priority);
+            fprintf(file, "| %s | %s | %s |\n", full_date, priority_name, message);
+            fflush(file);
         pthread_mutex_unlock(&logging_to_file_mutex);
     }
 }
 
-static char *convertDetail(log_detail detail) {
+char *get_log_type(log_priority detail) {
     if (detail == MAX) {
         return "MAX";
     }
@@ -192,16 +186,16 @@ static char *convertDetail(log_detail detail) {
     return "STANDARD";
 }
 
-void *executeThread(void *arg) {
+void *logging_enability_routine(void *arg) {
     sigset_t set;
     sigemptyset(&set);
-    sigaddset(&set, level);
+    sigaddset(&set, logging_state_signal);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
     while (true) {
-        if ((int)atomic_load(&is_log_enabled_flag) == 1) {
-            logging_state = logging_state == DISABLED
-                    ? ENABLED
-                    : DISABLED;
+        if ((int) atomic_load(&is_log_enabled_flag) == 1) {
+            current_logging_state = current_logging_state == DISABLED
+                                    ? ENABLED
+                                    : DISABLED;
             atomic_store(&is_log_enabled_flag, 0);
         }
         sleep(1);
@@ -209,17 +203,19 @@ void *executeThread(void *arg) {
     return NULL;
 }
 
-void *executeLogs(void *arg) {
+void *dump_file_creation_routine(void *arg) {
+//    todo: do osobnej funkcji ustawianie sygnałów
     sigset_t set;
     sigemptyset(&set);
-    sigaddset(&set, dump);
+    sigaddset(&set, dump_file_signal);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
+//
     while (true) {
-        if ((int)atomic_load(&dump_log_flag) == 1) {
-            FILE *file = create_file();
+        if ((int) atomic_load(&dump_log_flag) == 1) {
+            FILE *file = create_dump_file();
             if (file != NULL) {
-                for (int i = 0; i < funSize; i++) {
-                    fun[i](file);
+                for (int i = 0; i < dump_functions_array_size; i++) {
+                    dump_function_array[i](file);
                 }
                 fclose(file);
             }

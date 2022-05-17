@@ -3,7 +3,12 @@
 
 CMakeFiles/project_1.dir/init.c.o: ../init.c
 CMakeFiles/project_1.dir/init.c.o: ../init.h
+CMakeFiles/project_1.dir/init.c.o: ../tools.h
 
 CMakeFiles/project_1.dir/main.c.o: ../init.h
 CMakeFiles/project_1.dir/main.c.o: ../main.c
+CMakeFiles/project_1.dir/main.c.o: ../tools.h
+
+CMakeFiles/project_1.dir/tools.c.o: ../tools.c
+CMakeFiles/project_1.dir/tools.c.o: ../tools.h
 

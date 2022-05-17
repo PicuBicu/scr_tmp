@@ -177,6 +177,33 @@ main.c.s:
 	$(MAKE) -f CMakeFiles/project_1.dir/build.make CMakeFiles/project_1.dir/main.c.s
 .PHONY : main.c.s
 
+tools.o: tools.c.o
+
+.PHONY : tools.o
+
+# target to build an object file
+tools.c.o:
+	$(MAKE) -f CMakeFiles/project_1.dir/build.make CMakeFiles/project_1.dir/tools.c.o
+.PHONY : tools.c.o
+
+tools.i: tools.c.i
+
+.PHONY : tools.i
+
+# target to preprocess a source file
+tools.c.i:
+	$(MAKE) -f CMakeFiles/project_1.dir/build.make CMakeFiles/project_1.dir/tools.c.i
+.PHONY : tools.c.i
+
+tools.s: tools.c.s
+
+.PHONY : tools.s
+
+# target to generate assembly for a file
+tools.c.s:
+	$(MAKE) -f CMakeFiles/project_1.dir/build.make CMakeFiles/project_1.dir/tools.c.s
+.PHONY : tools.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... tools.o"
+	@echo "... tools.i"
+	@echo "... tools.s"
 .PHONY : help
 
 

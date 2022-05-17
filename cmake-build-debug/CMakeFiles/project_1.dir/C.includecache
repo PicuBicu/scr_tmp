@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /mnt/c/Users/champ/CLionProjects/untitled/init.c
-unistd.h
--
 init.h
 /mnt/c/Users/champ/CLionProjects/untitled/init.h
 
@@ -31,6 +29,20 @@ pthread.h
 -
 stdbool.h
 -
+unistd.h
+-
 stdarg.h
+-
+tools.h
+/mnt/c/Users/champ/CLionProjects/untitled/tools.h
+
+/mnt/c/Users/champ/CLionProjects/untitled/tools.h
+time.h
+-
+stdio.h
+-
+string.h
+-
+stdlib.h
 -
 

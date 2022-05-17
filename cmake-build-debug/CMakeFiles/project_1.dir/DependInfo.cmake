@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/mnt/c/Users/champ/CLionProjects/untitled/init.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/init.c.o"
   "/mnt/c/Users/champ/CLionProjects/untitled/main.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/main.c.o"
+  "/mnt/c/Users/champ/CLionProjects/untitled/tools.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/tools.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
