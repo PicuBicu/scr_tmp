@@ -36,7 +36,7 @@ void handle_state_signal(int signo, siginfo_t *info, void* other);
 void handle_enabling_logs_signal(int signo, siginfo_t *info, void* other);
 void* executeThread(void *arg);
 void* executeLogs(void* arg);
-int init_logger(state_t state, int state_signal, int enabling_logs_signal, char* filename);
+int create_logger(state_t state, int state_signal, int enabling_logs_signal, char* filename);
 int registerFunction(FUN fun);
 FILE* create_file();
 void writeToFile(log_detail d, char* data);

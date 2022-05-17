@@ -15,7 +15,7 @@ FUN *fun;
 pthread_t mainTid, logTid;
 pthread_mutex_t logging_to_file_mutex, register_function_mutex;
 
-int init_logger(state_t state, int state_signal, int enabling_logs_signal, char *filename) {
+int create_logger(state_t state, int state_signal, int enabling_logs_signal, char *filename) {
     if (is_initialized) {
         return EXIT_FAILURE;
     }
@@ -43,7 +43,7 @@ int init_logger(state_t state, int state_signal, int enabling_logs_signal, char 
 
     sigfillset(&set);
     action.sa_sigaction = handle_enabling_logs_signal;
-    action.sa_flags = SA_SIGINFO;
+    action.sa_flags = SA_SIGINFO; // todo: moze mozna wywalic i zmienic ilosc parametrów na 1 ?
     action.sa_mask = set;
 
     if (sigaction(enabling_logs_signal, &action, NULL) != 0) {

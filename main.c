@@ -23,7 +23,7 @@ int main()
 {
     srand(time(NULL));
     printf("pid = %d, level change signal = %d, dump signal = %d\n", getpid(), LEVEL_SIGNAL, LOG_SIGNAL);
-    assert(init_logger(ENABLED, LEVEL_SIGNAL, LOG_SIGNAL, FILENAME) == 0);
+    assert(create_logger(ENABLED, LEVEL_SIGNAL, LOG_SIGNAL, FILENAME) == 0);
     pthread_t tid, tid2;
     pthread_create(&tid, NULL, factory, (void *)&level);
     pthread_create(&tid2, NULL, logThread, (void *)&dump);
