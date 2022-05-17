@@ -1,11 +1,6 @@
-//
-// Created by sebastian on 19.03.2022.
-//
-
 #include "init.h"
 
-
-sem_t mainSem, logSem;
+atomic_int is_log_enabled_flag, dump_log_flag;
 state_t logging_state;
 bool is_initialized = false;
 int level, dump;
@@ -19,6 +14,8 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
     if (is_initialized) {
         return EXIT_FAILURE;
     }
+    atomic_store(&is_log_enabled_flag, 0);
+    atomic_store(&dump_log_flag, 0);
 
     logging_state = state;
     level = state_signal;
@@ -51,27 +48,13 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
         return EXIT_FAILURE;
     }
 
-    if (sem_init(&mainSem, 0, 0) != 0) {
-        fclose(file);
-        return EXIT_FAILURE;
-    }
-
-    if (sem_init(&logSem, 0, 0) != 0) {
-        fclose(file);
-        sem_destroy(&mainSem);
-        return EXIT_FAILURE;
-    }
-
     if (pthread_mutex_init(&logging_to_file_mutex, NULL) != 0) {
         fclose(file);
-        sem_destroy(&mainSem);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&register_function_mutex, NULL) != 0) {
         fclose(file);
-        sem_destroy(&mainSem);
-        sem_destroy(&logSem);
         pthread_mutex_destroy(&register_function_mutex);
         return EXIT_FAILURE;
     }
@@ -79,8 +62,6 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
     fun = (FUN *) calloc(sizeof(FUN), funCapacity);
     if (fun == NULL) {
         fclose(file);
-        sem_destroy(&mainSem);
-        sem_destroy(&logSem);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
@@ -89,8 +70,6 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
     if (pthread_create(&logTid, NULL, executeLogs, NULL) != 0) {
         fclose(file);
         free(fun);
-        sem_destroy(&mainSem);
-        sem_destroy(&logSem);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
@@ -100,8 +79,6 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
         fclose(file);
         free(fun);
         pthread_cancel(logTid);
-        sem_destroy(&mainSem);
-        sem_destroy(&logSem);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
@@ -113,8 +90,6 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
         fclose(file);
         pthread_cancel(mainTid);
         pthread_cancel(logTid);
-        sem_destroy(&mainSem);
-        sem_destroy(&logSem);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
@@ -125,8 +100,6 @@ int create_logger(state_t state, int state_signal, int enabling_logs_signal, cha
         free(fun);
         pthread_cancel(mainTid);
         pthread_cancel(logTid);
-        sem_destroy(&mainSem);
-        sem_destroy(&logSem);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
@@ -183,21 +156,20 @@ void destroy_logger() {
     if (fun != NULL) {
         free(fun);
     }
+    atomic_store(&dump_log_flag, 0);
+    atomic_store(&is_log_enabled_flag, 0);
     pthread_cancel(mainTid);
     pthread_cancel(logTid);
-    sem_destroy(&mainSem);
-    sem_destroy(&logSem);
     pthread_mutex_destroy(&register_function_mutex);
     pthread_mutex_destroy(&logging_to_file_mutex);
 }
 
 void handle_state_signal(int signo, siginfo_t *info, void *other) {
-    logging_state = logging_state == DISABLED ? ENABLED : DISABLED;
-    sem_post(&mainSem);
+    atomic_store(&is_log_enabled_flag, 1);
 }
 
 void handle_enabling_logs_signal(int signo, siginfo_t *info, void *other) {
-    sem_post(&logSem);
+    atomic_store(&dump_log_flag, 1);
 }
 
 void writeToFile(log_detail d, char *data) {
@@ -225,11 +197,15 @@ void *executeThread(void *arg) {
     sigemptyset(&set);
     sigaddset(&set, level);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
-
     while (true) {
-        sem_wait(&mainSem);
+        if ((int)atomic_load(&is_log_enabled_flag) == 1) {
+            logging_state = logging_state == DISABLED
+                    ? ENABLED
+                    : DISABLED;
+            atomic_store(&is_log_enabled_flag, 0);
+        }
+        sleep(1);
     }
-
     return NULL;
 }
 
@@ -238,17 +214,18 @@ void *executeLogs(void *arg) {
     sigemptyset(&set);
     sigaddset(&set, dump);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
-
     while (true) {
-        sem_wait(&logSem);
-        FILE *file = create_file();
-        if (file != NULL) {
-            for (int i = 0; i < funSize; i++) {
-                fun[i](file);
+        if ((int)atomic_load(&dump_log_flag) == 1) {
+            FILE *file = create_file();
+            if (file != NULL) {
+                for (int i = 0; i < funSize; i++) {
+                    fun[i](file);
+                }
+                fclose(file);
             }
-            fclose(file);
+            atomic_store(&dump_log_flag, 0);
         }
+        sleep(1);
     }
-
     return NULL;
 }

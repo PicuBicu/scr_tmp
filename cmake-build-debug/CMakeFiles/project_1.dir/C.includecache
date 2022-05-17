@@ -7,6 +7,8 @@
 #IncludeRegexTransform: 
 
 /mnt/c/Users/champ/CLionProjects/untitled/init.c
+unistd.h
+-
 init.h
 /mnt/c/Users/champ/CLionProjects/untitled/init.h
 
@@ -22,6 +24,8 @@ time.h
 stdlib.h
 -
 string.h
+-
+stdatomic.h
 -
 pthread.h
 -
