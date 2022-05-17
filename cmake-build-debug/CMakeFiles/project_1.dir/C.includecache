@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/champ/CLionProjects/untitled/init.c
+init.h
+/mnt/c/Users/champ/CLionProjects/untitled/init.h
+
+/mnt/c/Users/champ/CLionProjects/untitled/init.h
+signal.h
+-
+semaphore.h
+-
+stdio.h
+-
+time.h
+-
+stdlib.h
+-
+string.h
+-
+pthread.h
+-
+stdbool.h
+-
+stdarg.h
+-
+

@@ -1,0 +1,620 @@
+| 05/17/22-21:09:10 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:10 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:09:10 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:09:10 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:09:11 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:11 | MIN | Found a number: 0 and the factory: 1 |
+| 05/17/22-21:09:11 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:09:11 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:09:12 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:12 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:09:12 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:09:12 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:09:13 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:13 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:13 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:13 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:14 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:14 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:09:14 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:09:14 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:09:15 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:15 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:09:15 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:09:15 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:09:16 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:16 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:09:16 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05/17/22-21:09:16 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05/17/22-21:09:17 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:09:17 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05/17/22-21:09:17 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:17 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:09:18 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:09:18 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:09:18 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:18 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:09:19 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:09:19 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:09:19 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:19 | MIN | Found a number: 2 and the factory: 2 |
+| 05/17/22-21:09:20 | STANDARD | Checking whether number 2 is even or odd |
+| 05/17/22-21:09:20 | MAX | Checking whether number 2 is prime or composite |
+| 05/17/22-21:09:20 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:20 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:09:21 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:09:21 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:09:21 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:21 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:09:22 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:09:22 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:22 | MAX | Checking whether number 6 is prime or composite |
+| 05/17/22-21:09:22 | MIN | Found a number: 3 and the factory: 6 |
+| 05/17/22-21:09:23 | STANDARD | Checking whether number 6 is even or odd |
+| 05/17/22-21:09:23 | MAX | Checking whether number 6 is prime or composite |
+| 05/17/22-21:09:23 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:23 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:09:24 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:09:24 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:09:24 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:24 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:09:25 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:09:25 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:09:25 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:25 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:09:26 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:09:26 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:09:26 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:26 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:09:27 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:09:27 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:27 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:27 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:28 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:28 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:28 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:28 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:09:29 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:09:29 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:09:29 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:29 | MIN | Found a number: 13 and the factory: 6227020800 |
+| 05/17/22-21:09:30 | STANDARD | Checking whether number 6227020800 is even or odd |
+| 05/17/22-21:09:30 | MAX | Checking whether number 6227020800 is prime or composite |
+| 05/17/22-21:09:30 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:30 | MIN | Found a number: 3 and the factory: 6 |
+| 05/17/22-21:09:31 | STANDARD | Checking whether number 6 is even or odd |
+| 05/17/22-21:09:31 | MAX | Checking whether number 6 is prime or composite |
+| 05/17/22-21:09:31 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:31 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:32 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:32 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:32 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:32 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05/17/22-21:09:33 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:09:33 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05/17/22-21:09:33 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:33 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:09:34 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:09:34 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:09:34 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:34 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:09:35 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:09:35 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:09:35 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:35 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:09:36 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:09:36 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:09:36 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:36 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:37 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:37 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:37 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:37 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05/17/22-21:09:38 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:09:38 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05/17/22-21:09:38 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:38 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:09:39 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:09:39 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:09:39 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:39 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:40 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:40 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:40 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:40 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:09:41 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:09:41 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:09:41 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:41 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05/17/22-21:09:42 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05/17/22-21:09:42 | MAX | Checking whether number 479001600 is prime or composite |
+| 05/17/22-21:09:42 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:42 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:43 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:43 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:43 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:43 | MIN | Found a number: 6 and the factory: 720 |
+| 05/17/22-21:09:44 | STANDARD | Checking whether number 720 is even or odd |
+| 05/17/22-21:09:44 | MAX | Checking whether number 720 is prime or composite |
+| 05/17/22-21:09:44 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:44 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:09:45 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:09:45 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:09:45 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:45 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:09:46 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:09:46 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:09:46 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:46 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:09:47 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:09:47 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:09:47 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:47 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:09:48 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:09:48 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:09:48 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:48 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05/17/22-21:09:49 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05/17/22-21:09:49 | MAX | Checking whether number 479001600 is prime or composite |
+| 05/17/22-21:09:49 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:49 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:09:50 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:09:50 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:09:50 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:50 | MIN | Found a number: 6 and the factory: 720 |
+| 05/17/22-21:09:51 | STANDARD | Checking whether number 720 is even or odd |
+| 05/17/22-21:09:51 | MAX | Checking whether number 720 is prime or composite |
+| 05/17/22-21:09:51 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:51 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:09:52 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:09:52 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:09:52 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:52 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:09:53 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:09:53 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:09:53 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:53 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:09:54 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:09:54 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:09:54 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:54 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:09:55 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:09:55 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:09:55 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:55 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:09:56 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:09:56 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:09:56 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:56 | MIN | Found a number: 2 and the factory: 2 |
+| 05/17/22-21:09:57 | STANDARD | Checking whether number 2 is even or odd |
+| 05/17/22-21:09:57 | MAX | Checking whether number 2 is prime or composite |
+| 05/17/22-21:09:57 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:57 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:09:58 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:09:58 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:09:58 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:58 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:09:59 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:09:59 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:09:59 | MIN | Starting looking for a factory number |
+| 05/17/22-21:09:59 | MIN | Found a number: 0 and the factory: 1 |
+| 05/17/22-21:10:00 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:00 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:00 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:00 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:10:01 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:10:01 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:10:01 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:01 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:10:02 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:02 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:02 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:02 | MIN | Found a number: 9 and the factory: 362880 |
+| 05/17/22-21:10:03 | STANDARD | Checking whether number 362880 is even or odd |
+| 05/17/22-21:10:03 | MAX | Checking whether number 362880 is prime or composite |
+| 05/17/22-21:10:03 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:03 | MIN | Found a number: 3 and the factory: 6 |
+| 05/17/22-21:10:04 | STANDARD | Checking whether number 6 is even or odd |
+| 05/17/22-21:10:04 | MAX | Checking whether number 6 is prime or composite |
+| 05/17/22-21:10:04 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:04 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:10:05 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:10:05 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:10:05 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:05 | MIN | Found a number: 0 and the factory: 1 |
+| 05/17/22-21:10:06 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:06 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:06 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:06 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:10:07 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:10:07 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:10:07 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:07 | MIN | Found a number: 2 and the factory: 2 |
+| 05/17/22-21:10:08 | STANDARD | Checking whether number 2 is even or odd |
+| 05/17/22-21:10:08 | MAX | Checking whether number 2 is prime or composite |
+| 05/17/22-21:10:08 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:08 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05/17/22-21:10:09 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:10:09 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05/17/22-21:10:09 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:09 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:10:10 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:10:10 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:10:10 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:10 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:10:11 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:10:11 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:10:11 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:11 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:10:12 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:10:12 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:10:12 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:12 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:10:13 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:13 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:13 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:13 | MIN | Found a number: 4 and the factory: 24 |
+| 05/17/22-21:10:14 | STANDARD | Checking whether number 24 is even or odd |
+| 05/17/22-21:10:14 | MAX | Checking whether number 24 is prime or composite |
+| 05/17/22-21:10:14 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:14 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:10:15 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:15 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:15 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:15 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:10:16 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:10:16 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:10:16 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:16 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:10:17 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:10:17 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:10:17 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:17 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:10:18 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:10:18 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:10:18 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:18 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:10:19 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:10:19 | MAX | Checking whether number 39916800 is prime or composite |
+| 05/17/22-21:10:19 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:19 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:10:20 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:10:20 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:10:20 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:20 | MIN | Found a number: 0 and the factory: 1 |
+| 05/17/22-21:10:21 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:21 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:21 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:21 | MIN | Found a number: 2 and the factory: 2 |
+| 05/17/22-21:10:22 | STANDARD | Checking whether number 2 is even or odd |
+| 05/17/22-21:10:22 | MAX | Checking whether number 2 is prime or composite |
+| 05/17/22-21:10:22 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:22 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:10:23 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:23 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:23 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:23 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:10:24 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:10:24 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:10:24 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:24 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05/17/22-21:10:25 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05/17/22-21:10:25 | MAX | Checking whether number 479001600 is prime or composite |
+| 05/17/22-21:10:25 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:25 | MIN | Found a number: 3 and the factory: 6 |
+| 05/17/22-21:10:26 | STANDARD | Checking whether number 6 is even or odd |
+| 05/17/22-21:10:26 | MAX | Checking whether number 6 is prime or composite |
+| 05/17/22-21:10:26 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:26 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:10:27 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:10:27 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:10:27 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:27 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:10:28 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:10:28 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:10:28 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:28 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:10:29 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:10:29 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:10:29 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:29 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05/17/22-21:10:30 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05/17/22-21:10:30 | MAX | Checking whether number 479001600 is prime or composite |
+| 05/17/22-21:10:30 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:30 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:10:31 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:10:31 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:10:31 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:31 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05/17/22-21:10:32 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05/17/22-21:10:32 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05/17/22-21:10:32 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:32 | MIN | Found a number: 13 and the factory: 6227020800 |
+| 05/17/22-21:10:33 | STANDARD | Checking whether number 6227020800 is even or odd |
+| 05/17/22-21:10:33 | MAX | Checking whether number 6227020800 is prime or composite |
+| 05/17/22-21:10:33 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:33 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:10:34 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:10:34 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:10:34 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:34 | MIN | Found a number: 1 and the factory: 1 |
+| 05/17/22-21:10:35 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:10:35 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:10:35 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:35 | MIN | Found a number: 6 and the factory: 720 |
+| 05/17/22-21:10:36 | STANDARD | Checking whether number 720 is even or odd |
+| 05/17/22-21:10:36 | MAX | Checking whether number 720 is prime or composite |
+| 05/17/22-21:10:36 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:36 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:10:37 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:10:37 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:10:37 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:37 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:10:38 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:10:38 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:10:38 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:38 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:10:39 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:10:39 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:10:39 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:39 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:10:40 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:10:40 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:10:40 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:40 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:10:41 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:10:41 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:10:41 | MIN | Starting looking for a factory number |
+| 05/17/22-21:10:41 | MIN | Found a number: 3 and the factory: 6 |
+| 05/17/22-21:19:36 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:36 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:19:36 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:19:36 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:19:37 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:37 | MIN | Found a number: 7 and the factory: 5040 |
+| 05/17/22-21:19:37 | STANDARD | Checking whether number 5040 is even or odd |
+| 05/17/22-21:19:37 | MAX | Checking whether number 5040 is prime or composite |
+| 05/17/22-21:19:38 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:38 | MIN | Found a number: 6 and the factory: 720 |
+| 05/17/22-21:19:38 | STANDARD | Checking whether number 720 is even or odd |
+| 05/17/22-21:19:38 | MAX | Checking whether number 720 is prime or composite |
+| 05/17/22-21:19:39 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:39 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:19:39 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:19:39 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:19:40 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:40 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:19:40 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:19:40 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:19:41 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:41 | MIN | Found a number: 13 and the factory: 6227020800 |
+| 05/17/22-21:19:41 | STANDARD | Checking whether number 6227020800 is even or odd |
+| 05/17/22-21:19:41 | MAX | Checking whether number 6227020800 is prime or composite |
+| 05/17/22-21:19:42 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:42 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:19:42 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:19:42 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:19:43 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:43 | MIN | Found a number: 13 and the factory: 6227020800 |
+| 05/17/22-21:19:43 | STANDARD | Checking whether number 6227020800 is even or odd |
+| 05/17/22-21:19:43 | MAX | Checking whether number 6227020800 is prime or composite |
+| 05/17/22-21:19:44 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:44 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:19:44 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:19:44 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:19:45 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:45 | MIN | Found a number: 6 and the factory: 720 |
+| 05/17/22-21:19:45 | STANDARD | Checking whether number 720 is even or odd |
+| 05/17/22-21:19:45 | MAX | Checking whether number 720 is prime or composite |
+| 05/17/22-21:19:46 | MIN | Starting looking for a factory number |
+| 05/17/22-21:19:46 | STANDARD | Checking whether number 2 is even or odd |
+| 05/17/22-21:19:46 | MAX | Checking whether number 2 is prime or composite |
+| 05/17/22-21:19:46 | MIN | Found a number: 2 and the factory: 2 |
+| 05/17/22-21:20:02 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:02 | MIN | Found a number: 13 and the factory: 6227020800 |
+| 05/17/22-21:20:02 | STANDARD | Checking whether number 6227020800 is even or odd |
+| 05/17/22-21:20:02 | MAX | Checking whether number 6227020800 is prime or composite |
+| 05/17/22-21:20:03 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:03 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:20:03 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:20:03 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:20:04 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:04 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:20:04 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:20:04 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:20:05 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:05 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:20:05 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05/17/22-21:20:05 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05/17/22-21:20:06 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:20:06 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:20:06 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:06 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05/17/22-21:20:07 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05/17/22-21:20:07 | MAX | Checking whether number 3628800 is prime or composite |
+| 05/17/22-21:20:07 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:07 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05/17/22-21:20:08 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05/17/22-21:20:08 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:20:08 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:08 | MIN | Found a number: 5 and the factory: 120 |
+| 05/17/22-21:20:09 | STANDARD | Checking whether number 120 is even or odd |
+| 05/17/22-21:20:09 | MAX | Checking whether number 120 is prime or composite |
+| 05/17/22-21:20:09 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:09 | MIN | Found a number: 11 and the factory: 39916800 |
+| 05/17/22-21:20:10 | STANDARD | Checking whether number 39916800 is even or odd |
+| 05/17/22-21:20:10 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:20:10 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:10 | MIN | Found a number: 8 and the factory: 40320 |
+| 05/17/22-21:20:11 | STANDARD | Checking whether number 40320 is even or odd |
+| 05/17/22-21:20:11 | MAX | Checking whether number 40320 is prime or composite |
+| 05/17/22-21:20:11 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:11 | MIN | Found a number: 0 and the factory: 1 |
+| 05/17/22-21:20:12 | STANDARD | Checking whether number 1 is even or odd |
+| 05/17/22-21:20:12 | MAX | Checking whether number 1 is prime or composite |
+| 05/17/22-21:20:12 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:12 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05/17/22-21:20:13 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05/17/22-21:20:13 | MAX | Checking whether number 479001600 is prime or composite |
+| 05/17/22-21:20:13 | MIN | Starting looking for a factory number |
+| 05/17/22-21:20:13 | MIN | Found a number: 2 and the factory: 2 |
+| 05-17-22_21-25-08 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-08 | MIN | Found a number: 3 and the factory: 6 |
+| 05-17-22_21-25-08 | STANDARD | Checking whether number 6 is even or odd |
+| 05-17-22_21-25-08 | MAX | Checking whether number 6 is prime or composite |
+| 05-17-22_21-25-09 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-09 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05-17-22_21-25-09 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05-17-22_21-25-09 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05-17-22_21-25-10 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-10 | MIN | Found a number: 2 and the factory: 2 |
+| 05-17-22_21-25-10 | STANDARD | Checking whether number 2 is even or odd |
+| 05-17-22_21-25-10 | MAX | Checking whether number 2 is prime or composite |
+| 05-17-22_21-25-11 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-11 | MIN | Found a number: 5 and the factory: 120 |
+| 05-17-22_21-25-11 | STANDARD | Checking whether number 120 is even or odd |
+| 05-17-22_21-25-11 | MAX | Checking whether number 120 is prime or composite |
+| 05-17-22_21-25-12 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-12 | MIN | Found a number: 15 and the factory: 1307674368000 |
+| 05-17-22_21-25-12 | STANDARD | Checking whether number 1307674368000 is even or odd |
+| 05-17-22_21-25-12 | MAX | Checking whether number 1307674368000 is prime or composite |
+| 05-17-22_21-25-13 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-13 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05-17-22_21-25-13 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05-17-22_21-25-13 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05-17-22_21-25-14 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-14 | MIN | Found a number: 8 and the factory: 40320 |
+| 05-17-22_21-25-14 | STANDARD | Checking whether number 40320 is even or odd |
+| 05-17-22_21-25-14 | MAX | Checking whether number 40320 is prime or composite |
+| 05-17-22_21-25-15 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-15 | MIN | Found a number: 5 and the factory: 120 |
+| 05-17-22_21-25-15 | STANDARD | Checking whether number 120 is even or odd |
+| 05-17-22_21-25-15 | MAX | Checking whether number 120 is prime or composite |
+| 05-17-22_21-25-16 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-16 | MIN | Found a number: 8 and the factory: 40320 |
+| 05-17-22_21-25-16 | STANDARD | Checking whether number 40320 is even or odd |
+| 05-17-22_21-25-16 | MAX | Checking whether number 40320 is prime or composite |
+| 05-17-22_21-25-20 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-20 | MIN | Found a number: 0 and the factory: 1 |
+| 05-17-22_21-25-20 | STANDARD | Checking whether number 0 is even or odd |
+| 05-17-22_21-25-20 | MAX | Checking whether number 1 is prime or composite |
+| 05-17-22_21-25-21 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-21 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05-17-22_21-25-21 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05-17-22_21-25-21 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05-17-22_21-25-22 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-22 | MIN | Found a number: 5 and the factory: 120 |
+| 05-17-22_21-25-22 | STANDARD | Checking whether number 120 is even or odd |
+| 05-17-22_21-25-22 | MAX | Checking whether number 120 is prime or composite |
+| 05-17-22_21-25-23 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-23 | MIN | Found a number: 7 and the factory: 5040 |
+| 05-17-22_21-25-23 | STANDARD | Checking whether number 5040 is even or odd |
+| 05-17-22_21-25-23 | MAX | Checking whether number 5040 is prime or composite |
+| 05-17-22_21-25-24 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-24 | MIN | Found a number: 4 and the factory: 24 |
+| 05-17-22_21-25-24 | STANDARD | Checking whether number 24 is even or odd |
+| 05-17-22_21-25-24 | MAX | Checking whether number 24 is prime or composite |
+| 05-17-22_21-25-25 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-25 | STANDARD | Checking whether number 1 is even or odd |
+| 05-17-22_21-25-25 | MIN | Found a number: 0 and the factory: 1 |
+| 05-17-22_21-25-25 | MAX | Checking whether number 1 is prime or composite |
+| 05-17-22_21-25-26 | MIN | Starting looking for a factory number |
+| 05-17-22_21-25-26 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05-17-22_21-25-26 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05-17-22_21-25-26 | MAX | Checking whether number 3628800 is prime or composite |
+| 05-17-22_21-30-38 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-38 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05-17-22_21-30-38 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05-17-22_21-30-38 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05-17-22_21-30-39 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-39 | MIN | Found a number: 5 and the factory: 120 |
+| 05-17-22_21-30-39 | STANDARD | Checking whether number 120 is even or odd |
+| 05-17-22_21-30-39 | MAX | Checking whether number 120 is prime or composite |
+| 05-17-22_21-30-40 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-40 | MIN | Found a number: 6 and the factory: 720 |
+| 05-17-22_21-30-40 | STANDARD | Checking whether number 720 is even or odd |
+| 05-17-22_21-30-40 | MAX | Checking whether number 720 is prime or composite |
+| 05-17-22_21-30-41 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-41 | MIN | Found a number: 3 and the factory: 6 |
+| 05-17-22_21-30-41 | STANDARD | Checking whether number 6 is even or odd |
+| 05-17-22_21-30-41 | MAX | Checking whether number 6 is prime or composite |
+| 05-17-22_21-30-42 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-42 | MIN | Found a number: 2 and the factory: 2 |
+| 05-17-22_21-30-42 | STANDARD | Checking whether number 2 is even or odd |
+| 05-17-22_21-30-42 | MAX | Checking whether number 2 is prime or composite |
+| 05-17-22_21-30-43 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-43 | MIN | Found a number: 0 and the factory: 1 |
+| 05-17-22_21-30-43 | STANDARD | Checking whether number 1 is even or odd |
+| 05-17-22_21-30-43 | MAX | Checking whether number 1 is prime or composite |
+| 05-17-22_21-30-44 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-44 | MIN | Found a number: 14 and the factory: 87178291200 |
+| 05-17-22_21-30-44 | STANDARD | Checking whether number 87178291200 is even or odd |
+| 05-17-22_21-30-44 | MAX | Checking whether number 87178291200 is prime or composite |
+| 05-17-22_21-30-45 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-45 | MIN | Found a number: 7 and the factory: 5040 |
+| 05-17-22_21-30-45 | STANDARD | Checking whether number 5040 is even or odd |
+| 05-17-22_21-30-45 | MAX | Checking whether number 5040 is prime or composite |
+| 05-17-22_21-30-46 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-46 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05-17-22_21-30-46 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05-17-22_21-30-46 | MAX | Checking whether number 3628800 is prime or composite |
+| 05-17-22_21-30-47 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-47 | MIN | Found a number: 0 and the factory: 1 |
+| 05-17-22_21-30-47 | STANDARD | Checking whether number 1 is even or odd |
+| 05-17-22_21-30-47 | MAX | Checking whether number 1 is prime or composite |
+| 05-17-22_21-30-48 | MIN | Starting looking for a factory number |
+| 05-17-22_21-30-48 | MIN | Found a number: 2 and the factory: 2 |
+| 05-17-22_21-30-48 | STANDARD | Checking whether number 2 is even or odd |
+| 05-17-22_21-30-48 | MAX | Checking whether number 2 is prime or composite |
+| 05-17-22_21-37-48 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-48 | STANDARD | Checking whether number 120 is even or odd |
+| 05-17-22_21-37-48 | MAX | Checking whether number 120 is prime or composite |
+| 05-17-22_21-37-48 | MIN | Found a number: 5 and the factory: 120 |
+| 05-17-22_21-37-49 | STANDARD | Checking whether number 120 is even or odd |
+| 05-17-22_21-37-49 | MAX | Checking whether number 479001600 is prime or composite |
+| 05-17-22_21-37-49 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-49 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05-17-22_21-37-50 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05-17-22_21-37-50 | MAX | Checking whether number 479001600 is prime or composite |
+| 05-17-22_21-37-50 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-50 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05-17-22_21-37-51 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05-17-22_21-37-51 | MAX | Checking whether number 3628800 is prime or composite |
+| 05-17-22_21-37-51 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-51 | MIN | Found a number: 4 and the factory: 24 |
+| 05-17-22_21-37-52 | STANDARD | Checking whether number 24 is even or odd |
+| 05-17-22_21-37-52 | MAX | Checking whether number 24 is prime or composite |
+| 05-17-22_21-37-52 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-52 | MIN | Found a number: 8 and the factory: 40320 |
+| 05-17-22_21-37-53 | STANDARD | Checking whether number 40320 is even or odd |
+| 05-17-22_21-37-53 | MAX | Checking whether number 40320 is prime or composite |
+| 05-17-22_21-37-53 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-53 | MIN | Found a number: 4 and the factory: 24 |
+| 05-17-22_21-37-54 | STANDARD | Checking whether number 24 is even or odd |
+| 05-17-22_21-37-54 | MAX | Checking whether number 24 is prime or composite |
+| 05-17-22_21-37-54 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-54 | MIN | Found a number: 9 and the factory: 362880 |
+| 05-17-22_21-37-55 | STANDARD | Checking whether number 362880 is even or odd |
+| 05-17-22_21-37-55 | MAX | Checking whether number 362880 is prime or composite |
+| 05-17-22_21-37-55 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-55 | MIN | Found a number: 7 and the factory: 5040 |
+| 05-17-22_21-37-56 | STANDARD | Checking whether number 5040 is even or odd |
+| 05-17-22_21-37-56 | MAX | Checking whether number 5040 is prime or composite |
+| 05-17-22_21-37-56 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-56 | MIN | Found a number: 12 and the factory: 479001600 |
+| 05-17-22_21-37-57 | STANDARD | Checking whether number 479001600 is even or odd |
+| 05-17-22_21-37-57 | MAX | Checking whether number 479001600 is prime or composite |
+| 05-17-22_21-37-57 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-57 | MIN | Found a number: 13 and the factory: 6227020800 |
+| 05-17-22_21-37-58 | STANDARD | Checking whether number 6227020800 is even or odd |
+| 05-17-22_21-37-58 | MAX | Checking whether number 6227020800 is prime or composite |
+| 05-17-22_21-37-58 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-58 | MIN | Found a number: 10 and the factory: 3628800 |
+| 05-17-22_21-37-59 | STANDARD | Checking whether number 3628800 is even or odd |
+| 05-17-22_21-37-59 | MAX | Checking whether number 3628800 is prime or composite |
+| 05-17-22_21-37-59 | MIN | Starting looking for a factory number |
+| 05-17-22_21-37-59 | MIN | Found a number: 4 and the factory: 24 |
+| 05-17-22_21-38-00 | STANDARD | Checking whether number 24 is even or odd |
+| 05-17-22_21-38-00 | MAX | Checking whether number 24 is prime or composite |
+| 05-17-22_21-38-00 | MIN | Starting looking for a factory number |
+| 05-17-22_21-38-00 | MIN | Found a number: 2 and the factory: 2 |

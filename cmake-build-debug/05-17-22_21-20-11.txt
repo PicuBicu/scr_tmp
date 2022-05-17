@@ -1,0 +1,4 @@
+Drawn number is: 0
+Factory is: 1
+Factory number is odd
+Factory number is PRIME 

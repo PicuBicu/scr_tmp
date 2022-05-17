@@ -1,0 +1,4 @@
+Drawn number is: 10
+Factory is: 3628800
+Factory number is even
+Factory number is COMPOSITE 
