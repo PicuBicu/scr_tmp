@@ -2,6 +2,7 @@
 
 atomic_int is_log_enabled_flag, dump_log_flag;
 logging_state current_logging_state;
+log_priority current_log_priority;
 signum logging_state_signal = 0, dump_file_signal = 0;
 FILE *file;
 bool is_initialized = false;
@@ -10,18 +11,18 @@ unsigned int dump_functions_array_index = 0;
 size_t dump_functions_array_size = 5;
 dump_function_ptr *dump_function_array;
 pthread_t mainTid, logTid;
-pthread_mutex_t logging_to_file_mutex, register_function_mutex;
+pthread_mutex_t logging_to_file_mutex, register_function_mutex, change_priority_mutex;
 
 int create_logger(logging_state state,
                   signum logging_state_signal_num,
                   signum dump_file_signal_num,
                   char *filename,
                   size_t dump_file_array_init_size) {
-//    Checks if logger has already been initialized
-    if (is_initialized) {
+    if (is_initialized || filename == NULL) {
         return EXIT_FAILURE;
     }
 
+    current_log_priority = MIN;
     current_logging_state = state;
     dump_functions_array_size = dump_file_array_init_size;
     logging_state_signal = logging_state_signal_num;
@@ -30,7 +31,6 @@ int create_logger(logging_state state,
     atomic_store(&is_log_enabled_flag, 0);
     atomic_store(&dump_log_flag, 0);
 
-//    czy tu nie powinno byc sekcji?
     file = fopen(filename, "a+");
     if (file == NULL) {
         return EXIT_FAILURE;
@@ -69,11 +69,19 @@ int create_logger(logging_state state,
         return EXIT_FAILURE;
     }
 
+    if (pthread_mutex_init(&change_priority_mutex, NULL) != 0) {
+        fclose(file);
+        pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&register_function_mutex);
+        return EXIT_FAILURE;
+    }
+
     dump_function_array = (dump_function_ptr *) calloc(sizeof(dump_function_ptr), dump_functions_array_size);
     if (dump_function_array == NULL) {
         fclose(file);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
@@ -82,6 +90,7 @@ int create_logger(logging_state state,
         free(dump_function_array);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
@@ -91,10 +100,10 @@ int create_logger(logging_state state,
         pthread_cancel(logTid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
-//    todo moze wywalić?
     if (pthread_detach(mainTid) != 0) {
         free(dump_function_array);
         fclose(file);
@@ -102,6 +111,7 @@ int create_logger(logging_state state,
         pthread_cancel(logTid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
@@ -112,6 +122,7 @@ int create_logger(logging_state state,
         pthread_cancel(logTid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
@@ -119,21 +130,20 @@ int create_logger(logging_state state,
     return EXIT_SUCCESS;
 }
 
-// TODO: need description
 int add_dump_file_function(dump_function_ptr function) {
     if (is_initialized == true) {
         pthread_mutex_lock(&register_function_mutex);
-        if (dump_functions_array_index >= dump_functions_array_size) {
-            dump_function_ptr *functions = (dump_function_ptr *) realloc(
-                    dump_function_array,
-                    sizeof(dump_function_ptr) * dump_functions_array_size * 2);
-            if (functions == NULL) {
-                return EXIT_FAILURE;
+            if (dump_functions_array_index >= dump_functions_array_size) {
+                dump_function_ptr *functions = (dump_function_ptr *) realloc(
+                        dump_function_array,
+                        sizeof(dump_function_ptr) * dump_functions_array_size * 2);
+                if (functions == NULL) {
+                    return EXIT_FAILURE;
+                }
+                dump_function_array = functions;
+                dump_functions_array_size = dump_functions_array_size * 2;
             }
-            dump_function_array = functions;
-            dump_functions_array_size = dump_functions_array_size * 2;
-        }
-        dump_function_array[dump_functions_array_index++] = function;
+            dump_function_array[dump_functions_array_index++] = function;
         pthread_mutex_unlock(&register_function_mutex);
         return EXIT_SUCCESS;
     } else {
@@ -154,6 +164,7 @@ void destroy_logger() {
     pthread_cancel(logTid);
     pthread_mutex_destroy(&register_function_mutex);
     pthread_mutex_destroy(&logging_to_file_mutex);
+    pthread_mutex_destroy(&change_priority_mutex);
 }
 
 void handle_logging_state_change_signal(int signo, siginfo_t *info, void *other) {
@@ -165,8 +176,9 @@ void handle_dump_file_creation_signal(int signo, siginfo_t *info, void *other) {
 }
 
 void log_message(log_priority priority, char *message) {
-    if (is_initialized && current_logging_state == ENABLED) {
-// logowania tylko tych zdazen których stan jest wiekszy badz rowny biezacemu priorytetowi
+    if (is_initialized &&
+    current_logging_state == ENABLED &&
+    current_log_priority <= priority) {
         pthread_mutex_lock(&logging_to_file_mutex);
             char *full_date = get_current_time(DATE_FORMAT);
             char *priority_name = get_log_type(priority);
@@ -204,12 +216,10 @@ void *logging_enability_routine(void *arg) {
 }
 
 void *dump_file_creation_routine(void *arg) {
-//    todo: do osobnej funkcji ustawianie sygnałów
     sigset_t set;
     sigemptyset(&set);
     sigaddset(&set, dump_file_signal);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
-//
     while (true) {
         if ((int) atomic_load(&dump_log_flag) == 1) {
             FILE *file = create_dump_file();
@@ -224,4 +234,10 @@ void *dump_file_creation_routine(void *arg) {
         sleep(1);
     }
     return NULL;
+}
+
+void change_logger_priority(log_priority new_log_priority) {
+    pthread_mutex_lock(&change_priority_mutex);
+        current_log_priority = new_log_priority;
+    pthread_mutex_unlock(&change_priority_mutex);
 }

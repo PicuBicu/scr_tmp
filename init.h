@@ -36,6 +36,8 @@ extern signum logging_state_signal, dump_file_signal;
 // Register function that user need to implement
 typedef void (*dump_function_ptr)(FILE *f);
 
+//Log priority
+extern log_priority current_log_priority;
 // Check library initialization state
 extern bool is_initialized;
 
@@ -49,7 +51,7 @@ extern size_t dump_functions_array_size;
 extern pthread_t mainTid, logTid;
 
 // Mutexes for controlling critical sections
-extern pthread_mutex_t logging_to_file_mutex, register_function_mutex;
+extern pthread_mutex_t logging_to_file_mutex, register_function_mutex, change_priority_mutex;
 
 // Controlling signals via atomic variables
 void handle_logging_state_change_signal(int signo, siginfo_t *info, void *other);
@@ -71,6 +73,7 @@ void destroy_logger();
 void log_message(log_priority d, char *message);
 int add_dump_file_function(dump_function_ptr fun);
 
+void change_logger_priority(log_priority priority);
 char *get_log_type(log_priority detail);
 
 #endif //PROJECT_1_INIT_H

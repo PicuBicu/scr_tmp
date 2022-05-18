@@ -28,6 +28,7 @@ int main()
                          , LOG_SIGNAL
                          , DFL_FILENAME
                          , 2) == 0);
+    change_logger_priority(MAX);
     pthread_t tid, tid2;
     pthread_create(&tid, NULL, factory, (void *)&logging_state_signal);
     pthread_create(&tid2, NULL, logThread, (void *)&dump_file_signal);
