@@ -17,11 +17,13 @@ int main() {
     srand(time(NULL));
     printf("PID = %d\nENABLE/DISABLE LOGGING TO FILE SIGNAL = %d\nDUMP FILE CREATION SIGNAL = %d\n",
            getpid(),
-           LOGGING_STATE_SIGNAL_NUM, DUMP_FILE_SIGNAL_NUM);
+           LOGGING_STATE_SIGNAL_NUM,
+           DUMP_FILE_SIGNAL_NUM);
     if (create_logger(ENABLED,
                       LOGGING_STATE_SIGNAL_NUM,
                       DUMP_FILE_SIGNAL_NUM,
-                      DFL_FILENAME, 2) == 0) {
+                      DFL_FILENAME,
+                      2) == 0) {
         pthread_t first_tid, second_tid;
         pthread_create(&first_tid, NULL, first_thread_routine, NULL);
         pthread_create(&second_tid, NULL, second_thread_routine, NULL);
@@ -31,6 +33,14 @@ int main() {
         return 0;
     }
     return EXIT_FAILURE;
+}
+
+void second_dumper(FILE *file) {
+    fprintf(file, "Register function 1, Random %d\n", rand());
+}
+
+void first_dumper(FILE *file) {
+    fprintf(file, "Register function 2, Random %d\n", rand());
 }
 
 void *first_thread_routine(void *arg) {
@@ -61,10 +71,3 @@ void *second_thread_routine(void *arg) {
     return NULL;
 }
 
-void second_dumper(FILE *file) {
-    fprintf(file, "Register function 1, Random %d\n", rand());
-}
-
-void first_dumper(FILE *file) {
-    fprintf(file, "Register function 2, Random %d\n", rand());
-}

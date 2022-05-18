@@ -4,13 +4,12 @@ atomic_int is_log_enabled_flag, dump_log_flag;
 logging_state current_logging_state;
 log_priority current_log_priority;
 signum logging_state_signal = 0, dump_file_signal = 0;
-FILE *file;
+FILE *logs_file;
 bool is_initialized = false;
-
 unsigned int dump_functions_array_index = 0;
 size_t dump_functions_array_size = 5;
 dump_function_ptr *dump_function_array;
-pthread_t mainTid, logTid;
+pthread_t logging_enability_tid, dump_file_creation_tid;
 pthread_mutex_t logging_to_file_mutex, register_function_mutex, change_priority_mutex;
 
 int create_logger(logging_state state,
@@ -31,8 +30,8 @@ int create_logger(logging_state state,
     atomic_store(&is_log_enabled_flag, 0);
     atomic_store(&dump_log_flag, 0);
 
-    file = fopen(filename, "a+");
-    if (file == NULL) {
+    logs_file = fopen(filename, "a+");
+    if (logs_file == NULL) {
         return EXIT_FAILURE;
     }
 
@@ -44,7 +43,7 @@ int create_logger(logging_state state,
     action.sa_mask = set;
 
     if (sigaction(logging_state_signal_num, &action, NULL) != 0) {
-        fclose(file);
+        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
@@ -54,23 +53,23 @@ int create_logger(logging_state state,
     action.sa_mask = set;
 
     if (sigaction(dump_file_signal_num, &action, NULL) != 0) {
-        fclose(file);
+        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&logging_to_file_mutex, NULL) != 0) {
-        fclose(file);
+        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&register_function_mutex, NULL) != 0) {
-        fclose(file);
+        fclose(logs_file);
         pthread_mutex_destroy(&register_function_mutex);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&change_priority_mutex, NULL) != 0) {
-        fclose(file);
+        fclose(logs_file);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&register_function_mutex);
         return EXIT_FAILURE;
@@ -78,15 +77,15 @@ int create_logger(logging_state state,
 
     dump_function_array = (dump_function_ptr *) calloc(sizeof(dump_function_ptr), dump_functions_array_size);
     if (dump_function_array == NULL) {
-        fclose(file);
+        fclose(logs_file);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
-    if (pthread_create(&logTid, NULL, dump_file_creation_routine, NULL) != 0) {
-        fclose(file);
+    if (pthread_create(&dump_file_creation_tid, NULL, dump_file_creation_routine, NULL) != 0) {
+        fclose(logs_file);
         free(dump_function_array);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
@@ -94,32 +93,32 @@ int create_logger(logging_state state,
         return EXIT_FAILURE;
     }
 
-    if (pthread_create(&mainTid, NULL, logging_enability_routine, NULL) != 0) {
-        fclose(file);
+    if (pthread_create(&logging_enability_tid, NULL, logging_enability_routine, NULL) != 0) {
+        fclose(logs_file);
         free(dump_function_array);
-        pthread_cancel(logTid);
+        pthread_cancel(dump_file_creation_tid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
-    if (pthread_detach(mainTid) != 0) {
+    if (pthread_detach(logging_enability_tid) != 0) {
         free(dump_function_array);
-        fclose(file);
-        pthread_cancel(mainTid);
-        pthread_cancel(logTid);
+        fclose(logs_file);
+        pthread_cancel(logging_enability_tid);
+        pthread_cancel(dump_file_creation_tid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
         return EXIT_FAILURE;
     }
 
-    if (pthread_detach(logTid) != 0) {
-        fclose(file);
+    if (pthread_detach(dump_file_creation_tid) != 0) {
+        fclose(logs_file);
         free(dump_function_array);
-        pthread_cancel(mainTid);
-        pthread_cancel(logTid);
+        pthread_cancel(logging_enability_tid);
+        pthread_cancel(dump_file_creation_tid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
@@ -152,16 +151,16 @@ int add_dump_file_function(dump_function_ptr function) {
 }
 
 void destroy_logger() {
-    if (file != NULL) {
-        fclose(file);
+    if (logs_file != NULL) {
+        fclose(logs_file);
     }
     if (dump_function_array != NULL) {
         free(dump_function_array);
     }
     atomic_store(&dump_log_flag, 0);
     atomic_store(&is_log_enabled_flag, 0);
-    pthread_cancel(mainTid);
-    pthread_cancel(logTid);
+    pthread_cancel(logging_enability_tid);
+    pthread_cancel(dump_file_creation_tid);
     pthread_mutex_destroy(&register_function_mutex);
     pthread_mutex_destroy(&logging_to_file_mutex);
     pthread_mutex_destroy(&change_priority_mutex);
@@ -182,8 +181,8 @@ void log_message(log_priority priority, char *message) {
         pthread_mutex_lock(&logging_to_file_mutex);
             char *full_date = get_current_time(DATE_FORMAT);
             char *priority_name = get_log_type(priority);
-            fprintf(file, "| %s | %s | %s |\n", full_date, priority_name, message);
-            fflush(file);
+            fprintf(logs_file, "| %s | %s | %s |\n", full_date, priority_name, message);
+            fflush(logs_file);
         pthread_mutex_unlock(&logging_to_file_mutex);
     }
 }
@@ -222,12 +221,12 @@ void *dump_file_creation_routine(void *arg) {
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
     while (true) {
         if ((int) atomic_load(&dump_log_flag) == 1) {
-            FILE *file = create_dump_file();
-            if (file != NULL) {
+            FILE *dump_file = create_dump_file();
+            if (dump_file != NULL) {
                 for (int i = 0; i < dump_functions_array_size; i++) {
-                    dump_function_array[i](file);
+                    dump_function_array[i](dump_file);
                 }
-                fclose(file);
+                fclose(dump_file);
             }
             atomic_store(&dump_log_flag, 0);
         }

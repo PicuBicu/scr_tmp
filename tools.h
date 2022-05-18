@@ -1,5 +1,5 @@
-#ifndef UNTITLED_TOOLS_H
-#define UNTITLED_TOOLS_H
+#ifndef TOOLS_H
+#define TOOLS_H
 
 #include <time.h>
 #include <stdio.h>
@@ -15,4 +15,4 @@ char *get_current_time(char* format);
 // Files
 FILE *create_dump_file();
 
-#endif //UNTITLED_TOOLS_H
+#endif //TOOLS_H
