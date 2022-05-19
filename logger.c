@@ -1,4 +1,4 @@
-#include "init.h"
+#include "logger.h"
 
 atomic_int is_log_enabled_flag, dump_log_flag;
 logging_state current_logging_state;

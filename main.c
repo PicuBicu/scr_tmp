@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <string.h>
 #include <stdlib.h>
-#include "init.h"
+#include "logger.h"
 
 #define LOGGING_STATE_SIGNAL_NUM SIGRTMIN
 #define DUMP_FILE_SIGNAL_NUM SIGRTMIN + 1
