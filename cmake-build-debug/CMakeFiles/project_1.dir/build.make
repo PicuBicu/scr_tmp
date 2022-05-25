@@ -70,18 +70,18 @@ CMakeFiles/project_1.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project_1.dir/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/champ/CLionProjects/untitled/main.c -o CMakeFiles/project_1.dir/main.c.s
 
-CMakeFiles/project_1.dir/init.c.o: CMakeFiles/project_1.dir/flags.make
-CMakeFiles/project_1.dir/init.c.o: ../init.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project_1.dir/init.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project_1.dir/init.c.o   -c /mnt/c/Users/champ/CLionProjects/untitled/init.c
+CMakeFiles/project_1.dir/logger.c.o: CMakeFiles/project_1.dir/flags.make
+CMakeFiles/project_1.dir/logger.c.o: ../logger.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project_1.dir/logger.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project_1.dir/logger.c.o   -c /mnt/c/Users/champ/CLionProjects/untitled/logger.c
 
-CMakeFiles/project_1.dir/init.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project_1.dir/init.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/champ/CLionProjects/untitled/init.c > CMakeFiles/project_1.dir/init.c.i
+CMakeFiles/project_1.dir/logger.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project_1.dir/logger.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/champ/CLionProjects/untitled/logger.c > CMakeFiles/project_1.dir/logger.c.i
 
-CMakeFiles/project_1.dir/init.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project_1.dir/init.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/champ/CLionProjects/untitled/init.c -o CMakeFiles/project_1.dir/init.c.s
+CMakeFiles/project_1.dir/logger.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project_1.dir/logger.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/champ/CLionProjects/untitled/logger.c -o CMakeFiles/project_1.dir/logger.c.s
 
 CMakeFiles/project_1.dir/tools.c.o: CMakeFiles/project_1.dir/flags.make
 CMakeFiles/project_1.dir/tools.c.o: ../tools.c
@@ -99,14 +99,14 @@ CMakeFiles/project_1.dir/tools.c.s: cmake_force
 # Object files for target project_1
 project_1_OBJECTS = \
 "CMakeFiles/project_1.dir/main.c.o" \
-"CMakeFiles/project_1.dir/init.c.o" \
+"CMakeFiles/project_1.dir/logger.c.o" \
 "CMakeFiles/project_1.dir/tools.c.o"
 
 # External object files for target project_1
 project_1_EXTERNAL_OBJECTS =
 
 project_1: CMakeFiles/project_1.dir/main.c.o
-project_1: CMakeFiles/project_1.dir/init.c.o
+project_1: CMakeFiles/project_1.dir/logger.c.o
 project_1: CMakeFiles/project_1.dir/tools.c.o
 project_1: CMakeFiles/project_1.dir/build.make
 project_1: CMakeFiles/project_1.dir/link.txt

@@ -76,10 +76,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/champ/CLionProjects/untitled/init.c">
+		<Unit filename="/mnt/c/Users/champ/CLionProjects/untitled/logger.c">
 			<Option target="project_1"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/champ/CLionProjects/untitled/init.h">
+		<Unit filename="/mnt/c/Users/champ/CLionProjects/untitled/logger.h">
 			<Option target="project_1"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/champ/CLionProjects/untitled/main.c">

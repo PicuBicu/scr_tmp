@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/mnt/c/Users/champ/CLionProjects/untitled/init.c
-init.h
-/mnt/c/Users/champ/CLionProjects/untitled/init.h
+/mnt/c/Users/champ/CLionProjects/untitled/logger.c
+logger.h
+/mnt/c/Users/champ/CLionProjects/untitled/logger.h
 
-/mnt/c/Users/champ/CLionProjects/untitled/init.h
+/mnt/c/Users/champ/CLionProjects/untitled/logger.h
 signal.h
 -
 semaphore.h

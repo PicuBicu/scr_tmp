@@ -50,7 +50,7 @@ void destroy_logger();
 
 // User function
 void log_message(log_priority d, char *message);
-int add_dump_file_function(dump_function_ptr fun);
+int set_dump_function(dump_function_ptr function);
 
 void change_logger_priority(log_priority priority);
 char *get_log_type(log_priority detail);

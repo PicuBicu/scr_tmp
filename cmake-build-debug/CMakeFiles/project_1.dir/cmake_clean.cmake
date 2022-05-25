@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/project_1.dir/init.c.o"
+  "CMakeFiles/project_1.dir/logger.c.o"
   "CMakeFiles/project_1.dir/main.c.o"
   "CMakeFiles/project_1.dir/tools.c.o"
   "project_1"

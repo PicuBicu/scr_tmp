@@ -1,16 +1,20 @@
 #include "logger.h"
 
-
+// Critical sections
 sem_t enable_logging_sem, dump_file_sem;
-logging_state current_logging_state;
-log_priority current_log_priority;
-siginfo_t siginfo;
-signum logging_state_signal = 0, dump_file_signal = 0;
-FILE *logs_file;
-bool is_initialized = false;
-dump_function_ptr create_dump_file_function_ptr;
-pthread_t logging_enability_tid, dump_file_creation_tid;
 pthread_mutex_t logging_to_file_mutex, register_function_mutex, change_priority_mutex;
+
+// Threads
+pthread_t logging_enability_tid, dump_file_creation_tid;
+
+// Logger data
+logging_state current_logging_state;
+signum logging_state_signal = 0, dump_file_signal = 0;
+log_priority current_log_priority;
+FILE *logs_file;
+volatile sig_atomic_t is_initialized = false;
+volatile sig_atomic_t sig_data = 0;
+dump_function_ptr create_dump_file_function_ptr;
 
 int create_logger(logging_state state,
                   signum logging_state_signal_num,
@@ -24,10 +28,6 @@ int create_logger(logging_state state,
     dump_file_signal = dump_file_signal_num;
     current_log_priority = MIN;
     current_logging_state = state;
-    logs_file = fopen(filename, "a+");
-    if (logs_file == NULL) {
-        return EXIT_FAILURE;
-    }
 
     sigset_t set;
     struct sigaction action;
@@ -37,7 +37,6 @@ int create_logger(logging_state state,
     action.sa_mask = set;
 
     if (sigaction(logging_state_signal_num, &action, NULL) != 0) {
-        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
@@ -47,61 +46,60 @@ int create_logger(logging_state state,
     action.sa_mask = set;
 
     if (sigaction(dump_file_signal_num, &action, NULL) != 0) {
-        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&logging_to_file_mutex, NULL) != 0) {
-        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&register_function_mutex, NULL) != 0) {
-        fclose(logs_file);
         pthread_mutex_destroy(&register_function_mutex);
         return EXIT_FAILURE;
     }
 
     if (pthread_mutex_init(&change_priority_mutex, NULL) != 0) {
-        fclose(logs_file);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&register_function_mutex);
         return EXIT_FAILURE;
     }
 
     if (sem_init(&enable_logging_sem, 0, 0) != 0) {
-        fclose(logs_file);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
     }
 
     if (sem_init(&dump_file_sem, 0, 0) != 0) {
-        fclose(logs_file);
-        sem_destroy(&enable_logging_sem);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
+        sem_destroy(&enable_logging_sem);
+    }
+
+    logs_file = fopen(filename, "a+");
+    if (logs_file == NULL) {
+        return EXIT_FAILURE;
     }
 
     if (pthread_create(&dump_file_creation_tid, NULL, dump_file_creation_routine, NULL) != 0) {
-        fclose(logs_file);
-        sem_destroy(&enable_logging_sem);
-        sem_destroy(&dump_file_sem);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
+        sem_destroy(&enable_logging_sem);
+        sem_destroy(&dump_file_sem);
+        fclose(logs_file);
         return EXIT_FAILURE;
     }
 
     if (pthread_create(&logging_enability_tid, NULL, logging_enability_routine, NULL) != 0) {
-        fclose(logs_file);
-        sem_destroy(&enable_logging_sem);
-        sem_destroy(&dump_file_sem);
-        pthread_cancel(dump_file_creation_tid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
+        sem_destroy(&enable_logging_sem);
+        sem_destroy(&dump_file_sem);
+        fclose(logs_file);
+        pthread_cancel(dump_file_creation_tid);
         return EXIT_FAILURE;
     }
 
@@ -109,10 +107,10 @@ int create_logger(logging_state state,
     return EXIT_SUCCESS;
 }
 
-int add_dump_file_function(dump_function_ptr function) {
+int set_dump_function(dump_function_ptr function) {
     if (is_initialized) {
         pthread_mutex_lock(&register_function_mutex);
-        create_dump_file_function_ptr = function;
+            create_dump_file_function_ptr = function;
         pthread_mutex_unlock(&register_function_mutex);
         return EXIT_SUCCESS;
     } else {
@@ -121,21 +119,23 @@ int add_dump_file_function(dump_function_ptr function) {
 }
 
 void destroy_logger() {
-    if (logs_file != NULL) {
-        fclose(logs_file);
+    if (is_initialized) {
+        if (logs_file != NULL) {
+            fclose(logs_file);
+        }
+        pthread_cancel(logging_enability_tid);
+        pthread_cancel(dump_file_creation_tid);
+        pthread_mutex_destroy(&register_function_mutex);
+        pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
+        sem_destroy(&enable_logging_sem);
+        sem_destroy(&dump_file_sem);
+        is_initialized = false;
     }
-    sem_destroy(&enable_logging_sem);
-    sem_destroy(&dump_file_sem);
-    pthread_cancel(logging_enability_tid);
-    pthread_cancel(dump_file_creation_tid);
-    pthread_mutex_destroy(&register_function_mutex);
-    pthread_mutex_destroy(&logging_to_file_mutex);
-    pthread_mutex_destroy(&change_priority_mutex);
-    is_initialized = false;
 }
 
 void handle_logging_state_change_signal(int signo, siginfo_t *info, void *other) {
-    siginfo = *info;
+    sig_data = info->si_int;
     sem_post(&enable_logging_sem);
 }
 
@@ -144,7 +144,10 @@ void handle_dump_file_creation_signal(int signo, siginfo_t *info, void *other) {
 }
 
 void log_message(log_priority priority, char *message) {
-    if (is_initialized && current_logging_state == ENABLED && current_log_priority <= priority) {
+    if (is_initialized &&
+        current_logging_state == ENABLED &&
+        current_log_priority <= priority &&
+        message != NULL) {
         pthread_mutex_lock(&logging_to_file_mutex);
             char *full_date = get_current_time(DATE_FORMAT);
             char *priority_name = get_log_type(priority);
@@ -155,11 +158,11 @@ void log_message(log_priority priority, char *message) {
 }
 
 char *get_log_type(log_priority detail) {
-    if (detail == MAX) {
-        return "MAX";
-    }
     if (detail == MIN) {
         return "MIN";
+    }
+    if (detail == MAX) {
+        return "MAX";
     }
     return "STANDARD";
 }
@@ -172,15 +175,23 @@ void *logging_enability_routine(void *arg) {
     while (true) {
         sem_wait(&enable_logging_sem);
         char buffer[10];
-        sprintf(buffer, "DATA %d\n", siginfo.si_int);
+        sprintf(buffer, "DATA %d\n", sig_data);
         write(STDOUT_FILENO, buffer, 10);
-        switch (siginfo.si_int) {
-            case MIN:         change_logger_priority(MIN); break;
-            case STANDARD:         change_logger_priority(STANDARD);break;
-            case MAX:         change_logger_priority(MAX);break;
-            default: current_logging_state = (current_logging_state == DISABLED)
-                                             ? ENABLED
-                                             : DISABLED; break;
+        switch (sig_data) {
+            case MIN:
+                change_logger_priority(MIN);
+                break;
+            case STANDARD:
+                change_logger_priority(STANDARD);
+                break;
+            case MAX:
+                change_logger_priority(MAX);
+                break;
+            default:
+                current_logging_state = (current_logging_state == DISABLED)
+                                        ? ENABLED
+                                        : DISABLED;
+                break;
         }
 
     }

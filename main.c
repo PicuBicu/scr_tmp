@@ -22,7 +22,7 @@ int main() {
                       LOGGING_STATE_SIGNAL_NUM,
                       DUMP_FILE_SIGNAL_NUM,
                       DFL_FILENAME) == 0) {
-        add_dump_file_function(create_dump_file_function);
+        set_dump_function(create_dump_file_function);
         pthread_t first_tid, second_tid;
         pthread_create(&first_tid, NULL, first_thread_routine, NULL);
         pthread_create(&second_tid, NULL, second_thread_routine, NULL);

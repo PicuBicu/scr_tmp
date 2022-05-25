@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/mnt/c/Users/champ/CLionProjects/untitled/init.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/init.c.o"
+  "/mnt/c/Users/champ/CLionProjects/untitled/logger.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/logger.c.o"
   "/mnt/c/Users/champ/CLionProjects/untitled/main.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/main.c.o"
   "/mnt/c/Users/champ/CLionProjects/untitled/tools.c" "/mnt/c/Users/champ/CLionProjects/untitled/cmake-build-debug/CMakeFiles/project_1.dir/tools.c.o"
   )
