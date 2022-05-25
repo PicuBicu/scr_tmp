@@ -16,9 +16,9 @@
 
 // Priority level can be set to MIN, STANDARD or MAX
 typedef enum {
-    MIN,
-    STANDARD,
-    MAX
+    MIN = 1,
+    STANDARD = 2,
+    MAX = 3
 } log_priority;
 
 // Logging state checks if logging is enabled or disabled
@@ -45,8 +45,7 @@ void *dump_file_creation_routine(void *arg);
 int create_logger(logging_state state,
                   signum logging_state_signal_num,
                   signum dump_file_signal_num,
-                  char *filename,
-                  size_t dump_file_array_init_size);
+                  char *filename);
 void destroy_logger();
 
 // User function
