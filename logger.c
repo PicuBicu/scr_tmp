@@ -9,7 +9,6 @@ pthread_t logging_enability_tid, dump_file_creation_tid;
 
 // Logger data
 logging_state current_logging_state;
-signum logging_state_signal = 0, dump_file_signal = 0;
 log_priority current_log_priority;
 FILE *logs_file;
 volatile sig_atomic_t is_initialized = false;
@@ -24,8 +23,6 @@ int create_logger(logging_state state,
         return EXIT_FAILURE;
     }
 
-    logging_state_signal = logging_state_signal_num;
-    dump_file_signal = dump_file_signal_num;
     current_log_priority = MIN;
     current_logging_state = state;
 
@@ -36,7 +33,7 @@ int create_logger(logging_state state,
     action.sa_flags = SA_SIGINFO;
     action.sa_mask = set;
 
-    if (sigaction(logging_state_signal_num, &action, NULL) != 0) {
+    if (sigaction((int)logging_state_signal_num, &action, NULL) != 0) {
         return EXIT_FAILURE;
     }
 
@@ -45,7 +42,7 @@ int create_logger(logging_state state,
     action.sa_flags = SA_SIGINFO;
     action.sa_mask = set;
 
-    if (sigaction(dump_file_signal_num, &action, NULL) != 0) {
+    if (sigaction((int)dump_file_signal_num, &action, NULL) != 0) {
         return EXIT_FAILURE;
     }
 
@@ -54,7 +51,7 @@ int create_logger(logging_state state,
     }
 
     if (pthread_mutex_init(&register_function_mutex, NULL) != 0) {
-        pthread_mutex_destroy(&register_function_mutex);
+        pthread_mutex_destroy(&logging_to_file_mutex);
         return EXIT_FAILURE;
     }
 
@@ -79,10 +76,15 @@ int create_logger(logging_state state,
 
     logs_file = fopen(filename, "a+");
     if (logs_file == NULL) {
+        pthread_mutex_destroy(&register_function_mutex);
+        pthread_mutex_destroy(&logging_to_file_mutex);
+        pthread_mutex_destroy(&change_priority_mutex);
+        sem_destroy(&enable_logging_sem);
+        sem_destroy(&dump_file_sem);
         return EXIT_FAILURE;
     }
 
-    if (pthread_create(&dump_file_creation_tid, NULL, dump_file_creation_routine, NULL) != 0) {
+    if (pthread_create(&dump_file_creation_tid, NULL, dump_file_creation_routine, (void*)logging_state_signal_num) != 0) {
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
@@ -92,7 +94,7 @@ int create_logger(logging_state state,
         return EXIT_FAILURE;
     }
 
-    if (pthread_create(&logging_enability_tid, NULL, logging_enability_routine, NULL) != 0) {
+    if (pthread_create(&logging_enability_tid, NULL, logging_enability_routine, (void*)dump_file_signal_num) != 0) {
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
@@ -168,9 +170,10 @@ char *get_log_type(log_priority detail) {
 }
 
 void *logging_enability_routine(void *arg) {
+    long logging_state_signal = (long)arg;
     sigset_t set;
     sigemptyset(&set);
-    sigaddset(&set, logging_state_signal);
+    sigaddset(&set, (int)logging_state_signal);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
     while (true) {
         sem_wait(&enable_logging_sem);
@@ -199,9 +202,10 @@ void *logging_enability_routine(void *arg) {
 }
 
 void *dump_file_creation_routine(void *arg) {
+    long dump_file_signal = (long)arg;
     sigset_t set;
     sigemptyset(&set);
-    sigaddset(&set, dump_file_signal);
+    sigaddset(&set, (int)dump_file_signal);
     pthread_sigmask(SIG_UNBLOCK, &set, NULL);
     while (true) {
         sem_wait(&dump_file_sem);

@@ -36,6 +36,20 @@ stdarg.h
 tools.h
 /mnt/c/Users/champ/CLionProjects/untitled/tools.h
 
+/mnt/c/Users/champ/CLionProjects/untitled/main.c
+stdio.h
+-
+unistd.h
+-
+pthread.h
+-
+string.h
+-
+stdlib.h
+-
+logger.h
+/mnt/c/Users/champ/CLionProjects/untitled/logger.h
+
 /mnt/c/Users/champ/CLionProjects/untitled/tools.h
 time.h
 -

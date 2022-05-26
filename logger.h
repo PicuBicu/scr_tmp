@@ -28,7 +28,7 @@ typedef enum {
 } logging_state;
 
 // Signal num type
-typedef int signum;
+typedef long signum;
 
 // Register function that user need to implement
 typedef void (*dump_function_ptr)(FILE *f);
