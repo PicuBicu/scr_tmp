@@ -122,16 +122,16 @@ int set_dump_function(dump_function_ptr function) {
 
 void destroy_logger() {
     if (is_initialized) {
-        if (logs_file != NULL) {
-            fclose(logs_file);
-        }
-        pthread_cancel(logging_enability_tid);
-        pthread_cancel(dump_file_creation_tid);
         pthread_mutex_destroy(&register_function_mutex);
         pthread_mutex_destroy(&logging_to_file_mutex);
         pthread_mutex_destroy(&change_priority_mutex);
         sem_destroy(&enable_logging_sem);
         sem_destroy(&dump_file_sem);
+        if (logs_file != NULL) {
+            fclose(logs_file);
+        }
+        pthread_cancel(logging_enability_tid);
+        pthread_cancel(dump_file_creation_tid);
         is_initialized = false;
     }
 }
@@ -149,12 +149,15 @@ void log_message(log_priority priority, char *message) {
     if (is_initialized &&
         current_logging_state == ENABLED &&
         current_log_priority <= priority &&
-        message != NULL) {
+        message != NULL)
+    {
         pthread_mutex_lock(&logging_to_file_mutex);
             char *full_date = get_current_time(DATE_FORMAT);
             char *priority_name = get_log_type(priority);
-            fprintf(logs_file, "| %s | %s | %s |\n", full_date, priority_name, message);
-            fflush(logs_file);
+            if (full_date != NULL && priority_name != NULL) {
+                fprintf(logs_file, "| %s | %s | %s |\n", full_date, priority_name, message);
+                fflush(logs_file);
+            }
         pthread_mutex_unlock(&logging_to_file_mutex);
     }
 }
